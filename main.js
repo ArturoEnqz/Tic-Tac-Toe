@@ -14,6 +14,7 @@ function colocarEquisInicial() {
     const esquinas = [0, 2, 6, 8];
     const esquinaAleatoria = esquinas[Math.floor(Math.random() * esquinas.length)];
     boardCells[esquinaAleatoria].innerText = "❌";
+    boardCells[esquinaAleatoria].classList.add("clicked");
 }
 
 function colocarEquis() {
@@ -26,6 +27,7 @@ function colocarEquis() {
 
     const indiceAleatorio = indicesVacios[Math.floor(Math.random() * indicesVacios.length)];
     boardCells[indiceAleatorio].innerText = "❌";
+    boardCells[indiceAleatorio].classList.add("clicked");
     setTimeout(verificarGanador, 500);
 }
 
@@ -37,9 +39,12 @@ function iniciarJuego() {
 
     boardCells.forEach(cell => {
         cell.addEventListener("click", () => {
-            setTimeout(verificarGanador, 500)
-            cell.innerText = "🔵";
-            setTimeout(colocarEquis, 500);
+            if (!cell.classList.contains("clicked")) {
+                cell.classList.add("clicked");
+                cell.innerText = "🔵";
+                setTimeout(verificarGanador, 500);
+                setTimeout(colocarEquis, 500);
+            }
         })
     })
 }

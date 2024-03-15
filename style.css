@@ -38,3 +38,7 @@ button {
     border-style: none;
     margin-bottom: 20px;
 }
+
+.clicked {
+    pointer-events: none;
+}
